@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'login_form_screen.dart';
 
 class LoginScreen extends StatelessWidget {
   const LoginScreen({super.key});
@@ -9,35 +10,37 @@ class LoginScreen extends StatelessWidget {
     final screenWidth = MediaQuery.of(context).size.width;
 
     return Scaffold(
-      backgroundColor: const Color(0xFFFDF6EC), // Fondo crema claro
+      backgroundColor: const Color(0xFFFDF6EC),
       body: Column(
         children: [
-          // ===== PARTE SUPERIOR: Título + subtítulo =====
-          SizedBox(height: screenHeight * 0.08),
-          // Título "Kotoba"
+          //PARTE SUPERIOR
+          SizedBox(height: screenHeight * 0.12),
+          // Título
           const Text(
             'Kotoba',
             style: TextStyle(
               fontSize: 52,
-              fontWeight: FontWeight.w900,
-              color: Color(0xFF2D2D6D), // Azul oscuro/navy
+              fontWeight: FontWeight.bold,
+              color: Color(0xFF273B68),
+              fontFamily: 'RoundedMplus1c',
               letterSpacing: 1.2,
             ),
           ),
-          const SizedBox(height: 8),
+          const SizedBox(height: 6),
           // Subtítulo
           const Text(
             'Tu camino hacia el japones',
             style: TextStyle(
               fontSize: 16,
-              fontWeight: FontWeight.w500,
-              color: Color(0xFF4A4A6A),
+              fontWeight: FontWeight.bold,
+              color: Color(0xFF273B68),
+              fontFamily: 'Nunito',
             ),
           ),
 
-          // ===== PARTE MEDIA: Sol rojo (semicírculo) =====
+          //PARTE MEDIA
           const Spacer(),
-          // Semicírculo rojo (sol naciente)
+          // el semicirculo rojo tipo bandera de Japón
           Container(
             width: 180,
             height: 90,
@@ -50,12 +53,13 @@ class LoginScreen extends StatelessWidget {
             ),
           ),
 
-          // ===== PARTE INFERIOR: Contenedor naranja con botones =====
+          //PARTE INFERIOR
+          //Fondo naranja con botones
           Container(
             width: screenWidth,
             padding: const EdgeInsets.symmetric(horizontal: 40, vertical: 50),
             decoration: const BoxDecoration(
-              color: Color(0xFFF5A623), // Naranja
+              color: Color(0xFFFCB268), // Naranja
               borderRadius: BorderRadius.only(
                 topLeft: Radius.circular(40),
                 topRight: Radius.circular(40),
@@ -64,63 +68,60 @@ class LoginScreen extends StatelessWidget {
             child: Column(
               mainAxisSize: MainAxisSize.min,
               children: [
-                const SizedBox(height: 20),
-                // Botón "Iniciar sesión" (oscuro)
-                SizedBox(
-                  width: double.infinity,
-                  height: 55,
-                  child: ElevatedButton(
-                    onPressed: () {
-                      // Sin acción por ahora
-                    },
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: const Color(0xFF3A3A3A), // Gris oscuro/negro
-                      foregroundColor: Colors.white,
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(30),
+                const SizedBox(height: 100),
+                // Boton para iniciar sesion
+                MaterialButton(
+                  minWidth: double.infinity,
+                  height: 60,
+                  color: const Color(0xFF3A3A3A),
+                  textColor: Colors.white,
+                  elevation: 5, //esta madre es pa la sombra beto
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(15),
+                  ),
+                  onPressed: () {
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => const LoginFormScreen(),
                       ),
-                      elevation: 0,
-                    ),
-                    child: const Text(
-                      'Iniciar sesión',
-                      style: TextStyle(
-                        fontSize: 18,
-                        fontWeight: FontWeight.w600,
-                      ),
+                    );
+                  },
+                  child: const Text(
+                    'Iniciar sesión',
+                    style: TextStyle(
+                      fontSize: 18,
+                      fontWeight: FontWeight.w600,
+                      fontFamily: 'Nunito',
                     ),
                   ),
                 ),
                 const SizedBox(height: 16),
-                // Botón "Crea una cuenta" (blanco)
-                SizedBox(
-                  width: double.infinity,
-                  height: 55,
-                  child: ElevatedButton(
-                    onPressed: () {
-                      // Sin acción por ahora
-                    },
-                    style: ElevatedButton.styleFrom(
-                      backgroundColor: Colors.white,
-                      foregroundColor: const Color(0xFF3A3A3A),
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(30),
-                        side: const BorderSide(
-                          color: Color(0xFFE0E0E0),
-                          width: 1.5,
-                        ),
-                      ),
-                      elevation: 0,
+                // Boton para crear cuenta
+                MaterialButton(
+                  minWidth: double.infinity,
+                  height: 60,
+                  color: Colors.white,
+                  textColor: const Color(0xFF3A3A3A),
+                  elevation: 5,
+                  shape: RoundedRectangleBorder(
+                    borderRadius: BorderRadius.circular(15),
+                    side: const BorderSide(
+                      color: Color(0xFFE0E0E0),
+                      width: 1.5,
                     ),
-                    child: const Text(
-                      'Crea una cuenta',
-                      style: TextStyle(
-                        fontSize: 18,
-                        fontWeight: FontWeight.w600,
-                      ),
+                  ),
+                  onPressed: () {},
+                  child: const Text(
+                    'Crea una cuenta',
+                    style: TextStyle(
+                      fontSize: 18,
+                      fontWeight: FontWeight.w600,
+                      fontFamily: 'Nunito',
                     ),
                   ),
                 ),
-                const SizedBox(height: 10),
+                const SizedBox(height: 100),
               ],
             ),
           ),
