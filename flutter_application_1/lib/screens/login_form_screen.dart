@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'menu_screen.dart';
 
 class LoginFormScreen extends StatefulWidget {
   const LoginFormScreen({super.key});
@@ -162,7 +163,15 @@ class _LoginFormScreenState extends State<LoginFormScreen> {
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(30),
                     ),
-                    onPressed: () {},
+                    onPressed: () {
+                      //Pa enviarnos al menu screen, luego implementamos la validacion de usuario y contraseña
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const MenuScreen(),
+                        ),
+                      );
+                    },
                     child: const Text(
                       'Iniciar sesión',
                       style: TextStyle(
