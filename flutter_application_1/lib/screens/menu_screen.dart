@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'hiragana_lesson_screen.dart';
+import 'katakana_lesson_screen.dart';
 
 class MenuScreen extends StatelessWidget {
   const MenuScreen({super.key});
@@ -206,6 +207,13 @@ class MenuScreen extends StatelessWidget {
                         height: 60,
                         color: const Color.fromRGBO(254, 219, 183, 1),
                         onPressed: () {
+                          // Abre la ventana de leccion de Katakana
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => const KatakanaLessonScreen(),
+                            ),
+                          );
                         },
                         child: const Text(
                           'Comenzar lección',
@@ -275,6 +283,7 @@ class MenuScreen extends StatelessWidget {
                         height: 60,
                         color: const Color.fromRGBO(254, 219, 183, 1),
                         onPressed: () {
+                          // Implementar despues
                         },
                         child: const Text(
                           'Comenzar lección',
@@ -343,6 +352,7 @@ class MenuScreen extends StatelessWidget {
                         height: 60,
                         color: const Color.fromRGBO(254, 219, 183, 1),
                         onPressed: () {
+                          // Implementar despues
                         },
                         child: const Text(
                           'Comenzar lección',
