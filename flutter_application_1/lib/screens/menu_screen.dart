@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'hiragana_lesson_screen.dart';
 
 class MenuScreen extends StatelessWidget {
   const MenuScreen({super.key});
@@ -130,7 +131,13 @@ class MenuScreen extends StatelessWidget {
                         height: 60,
                         color: const Color.fromRGBO(254, 219, 183, 1),
                         onPressed: () {
-                          // Envia a la pantalla de la leccion de katakana implementar despues
+                          // Abre la ventana de leccion de Hiragana
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => const HiraganaLessonScreen(),
+                            ),
+                          );
                         },
                         child: const Text(
                           'Comenzar lección',
