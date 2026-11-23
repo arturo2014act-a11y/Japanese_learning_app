@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'hiragana_lesson_screen.dart';
 import 'katakana_lesson_screen.dart';
+import 'basic_phrases_lesson_screen.dart';
+import 'vocabulary_lesson_screen.dart';
 
 class MenuScreen extends StatelessWidget {
   const MenuScreen({super.key});
@@ -283,7 +285,13 @@ class MenuScreen extends StatelessWidget {
                         height: 60,
                         color: const Color.fromRGBO(254, 219, 183, 1),
                         onPressed: () {
-                          // Implementar despues
+                          // Abre la ventana de frases basicas
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => const BasicPhrasesLessonScreen(),
+                            ),
+                          );
                         },
                         child: const Text(
                           'Comenzar lección',
@@ -352,7 +360,13 @@ class MenuScreen extends StatelessWidget {
                         height: 60,
                         color: const Color.fromRGBO(254, 219, 183, 1),
                         onPressed: () {
-                          // Implementar despues
+                          // Abre la ventana de vocabulario
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) => const VocabularyLessonScreen(),
+                            ),
+                          );
                         },
                         child: const Text(
                           'Comenzar lección',
