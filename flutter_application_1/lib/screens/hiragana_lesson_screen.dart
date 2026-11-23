@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'hiragana_practice_screen.dart';
 
 // Modelo simple para cada caracter hiragana y su lectura
 class CaracterHiragana {
@@ -109,6 +110,12 @@ class HiraganaLessonScreen extends StatelessWidget {
                 child: ElevatedButton(
                   onPressed: () {
                     // Sin función por el momento
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => const HiraganaPracticeScreen(),
+                      ),
+                    );
                   },
                   style: ElevatedButton.styleFrom(
                     backgroundColor: const Color(0xFF383838),
