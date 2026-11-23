@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-// Modelo para cada tema o leccion de frases basicas
+// Modelo para cada tema de frases basicas
 class TemaFrases {
   final String titulo;
   final String imagenAsset;
@@ -14,7 +14,7 @@ class TemaFrases {
 class BasicPhrasesLessonScreen extends StatelessWidget {
   const BasicPhrasesLessonScreen({super.key});
 
-  // Lista con los temas de frases basicas y sus imagenes
+  // Lista con los 6 temas respetando el orden exacto de la pantalla
   final List<TemaFrases> temas = const [
     TemaFrases(
       titulo: 'Saludos',
@@ -29,164 +29,170 @@ class BasicPhrasesLessonScreen extends StatelessWidget {
       imagenAsset: 'assets/images/presentacion_bas.png',
     ),
     TemaFrases(
-      titulo: 'Preguntar',
-      imagenAsset: 'assets/images/preguntar_bas.png',
-    ),
-    TemaFrases(
-      titulo: 'La Hora',
+      titulo: 'Hora',
       imagenAsset: 'assets/images/hora_bas.png',
     ),
     TemaFrases(
       titulo: 'Describir',
       imagenAsset: 'assets/images/describir_bas.png',
     ),
+    TemaFrases(
+      titulo: 'Preguntar',
+      imagenAsset: 'assets/images/preguntar_bas.png',
+    ),
   ];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // Fondo crema caracteristico de la app
       backgroundColor: const Color(0xFFFDF6EC),
       body: SafeArea(
         child: Column(
           children: [
-            const SizedBox(height: 16),
+            const SizedBox(height: 20),
 
-            // Barra superior con boton para regresar y titulo
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 16.0),
-              child: Row(
-                children: [
-                  IconButton(
-                    icon: const Icon(Icons.arrow_back_ios_new, color: Color(0xFF273B68)),
-                    onPressed: () {
-                      Navigator.pop(context);
-                    },
-                  ),
-                  const Expanded(
-                    child: Center(
-                      child: Text(
-                        'Frases Básicas',
-                        style: TextStyle(
-                          fontSize: 28,
-                          fontWeight: FontWeight.bold,
-                          color: Color(0xFF273B68),
-                          fontFamily: 'Nunito',
-                        ),
-                      ),
-                    ),
-                  ),
-                  // Espacio fantasma para centrar el titulo perfectamente
-                  const SizedBox(width: 48),
-                ],
+            // Titulo principal
+            const Text(
+              'Frases Básicas',
+              style: TextStyle(
+                fontSize: 32,
+                fontWeight: FontWeight.bold,
+                color: Color(0xFF273B68),
+                fontFamily: 'Nunito',
+              ),
+            ),
+            const SizedBox(height: 6),
+
+            // Subtitulo de seleccion
+            const Text(
+              'Selecciona Lección',
+              style: TextStyle(
+                fontSize: 20,
+                fontWeight: FontWeight.w700,
+                color: Color(0xFF273B68),
+                fontFamily: 'Nunito',
+              ),
+            ),
+            const SizedBox(height: 8),
+
+            // Breve descripcion debajo del subtitulo
+            const Text(
+              'Explora expresiones para comunicarte en japonés.',
+              textAlign: TextAlign.center,
+              style: TextStyle(
+                fontSize: 13,
+                color: Color(0xFF5D6B82),
+                fontFamily: 'Nunito',
               ),
             ),
 
-            const SizedBox(height: 12),
+            const SizedBox(height: 20),
 
-            // Boton superior decorativo
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 20),
-              child: SizedBox(
-                width: double.infinity,
-                height: 52,
-                child: ElevatedButton(
-                  onPressed: () {
-                    // Por el momento solo estetico
-                  },
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: const Color(0xFF383838),
-                    foregroundColor: Colors.white,
-                    elevation: 0,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(16),
-                    ),
-                  ),
-                  child: const Text(
-                    'Aprende las frases',
-                    style: TextStyle(
-                      fontSize: 18,
-                      fontWeight: FontWeight.w600,
-                      fontFamily: 'Nunito',
-                    ),
-                  ),
-                ),
-              ),
-            ),
-
-            const SizedBox(height: 16),
-
-            // Cuadricula con las tarjetas de los temas
+            // Cuadricula con las tarjetas de cada leccion
             Expanded(
               child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 16),
+                padding: const EdgeInsets.symmetric(horizontal: 24),
                 child: GridView.builder(
+                  physics: const BouncingScrollPhysics(),
                   itemCount: temas.length,
                   gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                     crossAxisCount: 2,
-                    crossAxisSpacing: 14,
-                    mainAxisSpacing: 14,
+                    crossAxisSpacing: 18,
+                    mainAxisSpacing: 18,
                     childAspectRatio: 0.88,
                   ),
                   itemBuilder: (context, index) {
                     final tema = temas[index];
 
-                    // Recuadro del tema
-                    return InkWell(
-                      borderRadius: BorderRadius.circular(16),
-                      onTap: () {
-                        // Accion para entrar a la leccion mas adelante
-                      },
-                      child: Container(
-                        decoration: BoxDecoration(
-                          color: Colors.white,
-                          borderRadius: BorderRadius.circular(16),
-                          border: Border.all(
-                            color: const Color(0xFFF6C99B),
-                            width: 2.0,
-                          ),
-                          boxShadow: const [
-                            BoxShadow(
-                              color: Color(0x10000000),
-                              blurRadius: 4,
-                              offset: Offset(0, 2),
-                            ),
-                          ],
+                    return Container(
+                      decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.circular(20),
+                        border: Border.all(
+                          color: const Color(0xFFF6C99B),
+                          width: 2.2,
                         ),
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            // Imagen del tema
-                            Expanded(
-                              child: Padding(
-                                padding: const EdgeInsets.all(12.0),
-                                child: Image.asset(
-                                  tema.imagenAsset,
-                                  fit: BoxFit.contain,
-                                ),
-                              ),
-                            ),
-                            // Titulo del tema
-                            Padding(
-                              padding: const EdgeInsets.only(bottom: 14.0),
-                              child: Text(
+                        boxShadow: [
+                          BoxShadow(
+                            color: const Color(0xFFE0C4A4).withValues(alpha: 0.35),
+                            blurRadius: 6,
+                            offset: const Offset(0, 3),
+                          ),
+                        ],
+                      ),
+                      child: InkWell(
+                        borderRadius: BorderRadius.circular(20),
+                        onTap: () {
+                          // Accion de la leccion para mas adelante
+                        },
+                        child: Padding(
+                          padding: const EdgeInsets.symmetric(vertical: 14.0, horizontal: 10.0),
+                          child: Column(
+                            children: [
+                              // Titulo del tema arriba
+                              Text(
                                 tema.titulo,
                                 textAlign: TextAlign.center,
                                 style: const TextStyle(
-                                  fontSize: 17,
+                                  fontSize: 16,
                                   fontWeight: FontWeight.bold,
                                   color: Color(0xFF273B68),
                                   fontFamily: 'Nunito',
                                 ),
                               ),
-                            ),
-                          ],
+                              const SizedBox(height: 8),
+                              // Imagen alusiva centrada abajo
+                              Expanded(
+                                child: Image.asset(
+                                  tema.imagenAsset,
+                                  fit: BoxFit.contain,
+                                ),
+                              ),
+                            ],
+                          ),
                         ),
                       ),
                     );
                   },
                 ),
               ),
+            ),
+          ],
+        ),
+      ),
+
+      // Barra inferior de navegacion
+      bottomNavigationBar: Container(
+        height: 64,
+        decoration: const BoxDecoration(
+          color: Color(0xFFF3ECE0),
+          border: Border(
+            top: BorderSide(
+              color: Color(0xFFE5DDD0),
+              width: 1,
+            ),
+          ),
+        ),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          children: [
+            IconButton(
+              icon: const Icon(Icons.home, size: 30, color: Color(0xFF273B68)),
+              onPressed: () {
+                Navigator.pop(context);
+              },
+            ),
+            IconButton(
+              icon: const Icon(Icons.menu_book, size: 28, color: Color(0xFF273B68)),
+              onPressed: () {},
+            ),
+            IconButton(
+              icon: const Icon(Icons.bar_chart, size: 30, color: Color(0xFF273B68)),
+              onPressed: () {},
+            ),
+            IconButton(
+              icon: const Icon(Icons.person, size: 28, color: Color(0xFF273B68)),
+              onPressed: () {},
             ),
           ],
         ),

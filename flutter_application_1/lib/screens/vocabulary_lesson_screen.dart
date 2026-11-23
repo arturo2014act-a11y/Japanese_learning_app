@@ -14,179 +14,173 @@ class CategoriaVocabulario {
 class VocabularyLessonScreen extends StatelessWidget {
   const VocabularyLessonScreen({super.key});
 
-  // Lista con los temas de vocabulario y sus imagenes
+  // Lista de las 6 categorias en el orden exacto de la imagen
   final List<CategoriaVocabulario> categorias = const [
-    CategoriaVocabulario(
-      titulo: 'Animales',
-      imagenAsset: 'assets/images/animales_voca.png',
-    ),
     CategoriaVocabulario(
       titulo: 'Comida',
       imagenAsset: 'assets/images/comida_voca.png',
-    ),
-    CategoriaVocabulario(
-      titulo: 'Familia',
-      imagenAsset: 'assets/images/familia_voca.png',
-    ),
-    CategoriaVocabulario(
-      titulo: 'Objetos',
-      imagenAsset: 'assets/images/objetos_voca.png',
     ),
     CategoriaVocabulario(
       titulo: 'Números',
       imagenAsset: 'assets/images/numeros_voca.png',
     ),
     CategoriaVocabulario(
+      titulo: 'Objetos',
+      imagenAsset: 'assets/images/objetos_voca.png',
+    ),
+    CategoriaVocabulario(
       titulo: 'Colores',
       imagenAsset: 'assets/images/colores_voca.png',
+    ),
+    CategoriaVocabulario(
+      titulo: 'Animales',
+      imagenAsset: 'assets/images/animales_voca.png',
+    ),
+    CategoriaVocabulario(
+      titulo: 'Familia',
+      imagenAsset: 'assets/images/familia_voca.png',
     ),
   ];
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      // Fondo crema caracteristico de la app
       backgroundColor: const Color(0xFFFDF6EC),
       body: SafeArea(
         child: Column(
           children: [
-            const SizedBox(height: 16),
+            const SizedBox(height: 20),
 
-            // Barra superior con boton para regresar y titulo
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 16.0),
-              child: Row(
-                children: [
-                  IconButton(
-                    icon: const Icon(Icons.arrow_back_ios_new, color: Color(0xFF273B68)),
-                    onPressed: () {
-                      Navigator.pop(context);
-                    },
-                  ),
-                  const Expanded(
-                    child: Center(
-                      child: Text(
-                        'Vocabulario',
-                        style: TextStyle(
-                          fontSize: 28,
-                          fontWeight: FontWeight.bold,
-                          color: Color(0xFF273B68),
-                          fontFamily: 'Nunito',
-                        ),
-                      ),
-                    ),
-                  ),
-                  // Espacio fantasma para centrar el titulo perfectamente
-                  const SizedBox(width: 48),
-                ],
+            // Titulo principal
+            const Text(
+              'Vocabulario',
+              style: TextStyle(
+                fontSize: 32,
+                fontWeight: FontWeight.bold,
+                color: Color(0xFF273B68),
+                fontFamily: 'Nunito',
+              ),
+            ),
+            const SizedBox(height: 6),
+
+            // Subtitulo de seleccion
+            const Text(
+              'Selecciona Lección',
+              style: TextStyle(
+                fontSize: 20,
+                fontWeight: FontWeight.w700,
+                color: Color(0xFF273B68),
+                fontFamily: 'Nunito',
               ),
             ),
 
-            const SizedBox(height: 12),
+            const SizedBox(height: 24),
 
-            // Boton superior decorativo
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 20),
-              child: SizedBox(
-                width: double.infinity,
-                height: 52,
-                child: ElevatedButton(
-                  onPressed: () {
-                    // Por el momento solo estetico
-                  },
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: const Color(0xFF383838),
-                    foregroundColor: Colors.white,
-                    elevation: 0,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(16),
-                    ),
-                  ),
-                  child: const Text(
-                    'Aprende el vocabulario',
-                    style: TextStyle(
-                      fontSize: 18,
-                      fontWeight: FontWeight.w600,
-                      fontFamily: 'Nunito',
-                    ),
-                  ),
-                ),
-              ),
-            ),
-
-            const SizedBox(height: 16),
-
-            // Cuadricula con las tarjetas de los temas
+            // Cuadricula con las tarjetas de vocabulario
             Expanded(
               child: Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 16),
+                padding: const EdgeInsets.symmetric(horizontal: 24),
                 child: GridView.builder(
+                  physics: const BouncingScrollPhysics(),
                   itemCount: categorias.length,
                   gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                     crossAxisCount: 2,
-                    crossAxisSpacing: 14,
-                    mainAxisSpacing: 14,
+                    crossAxisSpacing: 18,
+                    mainAxisSpacing: 18,
                     childAspectRatio: 0.88,
                   ),
                   itemBuilder: (context, index) {
                     final categoria = categorias[index];
 
-                    // Recuadro de la categoria
-                    return InkWell(
-                      borderRadius: BorderRadius.circular(16),
-                      onTap: () {
-                        // Accion para entrar a la leccion mas adelante
-                      },
-                      child: Container(
-                        decoration: BoxDecoration(
-                          color: Colors.white,
-                          borderRadius: BorderRadius.circular(16),
-                          border: Border.all(
-                            color: const Color(0xFFF6C99B),
-                            width: 2.0,
-                          ),
-                          boxShadow: const [
-                            BoxShadow(
-                              color: Color(0x10000000),
-                              blurRadius: 4,
-                              offset: Offset(0, 2),
-                            ),
-                          ],
+                    return Container(
+                      decoration: BoxDecoration(
+                        color: Colors.white,
+                        borderRadius: BorderRadius.circular(20),
+                        border: Border.all(
+                          color: const Color(0xFFF6C99B),
+                          width: 2.2,
                         ),
-                        child: Column(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            // Imagen alusiva a la categoria
-                            Expanded(
-                              child: Padding(
-                                padding: const EdgeInsets.all(12.0),
-                                child: Image.asset(
-                                  categoria.imagenAsset,
-                                  fit: BoxFit.contain,
-                                ),
-                              ),
-                            ),
-                            // Titulo de la categoria
-                            Padding(
-                              padding: const EdgeInsets.only(bottom: 14.0),
-                              child: Text(
+                        boxShadow: [
+                          BoxShadow(
+                            color: const Color(0xFFE0C4A4).withValues(alpha: 0.35),
+                            blurRadius: 6,
+                            offset: const Offset(0, 3),
+                          ),
+                        ],
+                      ),
+                      child: InkWell(
+                        borderRadius: BorderRadius.circular(20),
+                        onTap: () {
+                          // Accion de la leccion para mas adelante
+                        },
+                        child: Padding(
+                          padding: const EdgeInsets.symmetric(vertical: 14.0, horizontal: 10.0),
+                          child: Column(
+                            children: [
+                              // Titulo de la categoria arriba
+                              Text(
                                 categoria.titulo,
                                 textAlign: TextAlign.center,
                                 style: const TextStyle(
-                                  fontSize: 17,
+                                  fontSize: 16,
                                   fontWeight: FontWeight.bold,
                                   color: Color(0xFF273B68),
                                   fontFamily: 'Nunito',
                                 ),
                               ),
-                            ),
-                          ],
+                              const SizedBox(height: 8),
+                              // Imagen alusiva centrada abajo
+                              Expanded(
+                                child: Image.asset(
+                                  categoria.imagenAsset,
+                                  fit: BoxFit.contain,
+                                ),
+                              ),
+                            ],
+                          ),
                         ),
                       ),
                     );
                   },
                 ),
               ),
+            ),
+          ],
+        ),
+      ),
+
+      // Barra inferior de navegacion
+      bottomNavigationBar: Container(
+        height: 64,
+        decoration: const BoxDecoration(
+          color: Color(0xFFF3ECE0),
+          border: Border(
+            top: BorderSide(
+              color: Color(0xFFE5DDD0),
+              width: 1,
+            ),
+          ),
+        ),
+        child: Row(
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
+          children: [
+            IconButton(
+              icon: const Icon(Icons.home, size: 30, color: Color(0xFF273B68)),
+              onPressed: () {
+                Navigator.pop(context);
+              },
+            ),
+            IconButton(
+              icon: const Icon(Icons.menu_book, size: 28, color: Color(0xFF273B68)),
+              onPressed: () {},
+            ),
+            IconButton(
+              icon: const Icon(Icons.bar_chart, size: 30, color: Color(0xFF273B68)),
+              onPressed: () {},
+            ),
+            IconButton(
+              icon: const Icon(Icons.person, size: 28, color: Color(0xFF273B68)),
+              onPressed: () {},
             ),
           ],
         ),
